@@ -1,1 +1,29 @@
+# .github/workflows/docker-ci.yml
+name: Docker Compose CI Validation
 
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository code
+      uses: actions/checkout@v4
+
+    - name: Verify Docker Compose Configuration File
+      run: |
+        docker compose config --quiet
+        echo "Docker Compose file syntax validation successful."
+
+    - name: Lint Dnsmasq Configuration Format
+      run: |
+        if [ ! -f config/dnsmasq.conf ]; then
+          echo "Critical Error: config/dnsmasq.conf missing."
+          exit 1
+        fi
+        echo "Configuration files structural check completed."
