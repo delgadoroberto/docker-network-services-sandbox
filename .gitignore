@@ -1,0 +1,13 @@
+# .gitignore
+# Docker runtime and volume data
+.docker-data/
+*.log
+
+# Operating System specific
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
