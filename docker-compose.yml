@@ -1,0 +1,30 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  network-services:
+    image: strm/dnsmasq:latest
+    container_name: core-network-sandbox
+    volumes:
+      - ./config/dnsmasq.conf:/etc/dnsmasq.conf:ro
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+      - "67:67/udp"
+    environment:
+      - TZ=UTC
+    restart: always
+    # Privileged or cap_add is required to bind raw DHCP sockets (Layer 2/3 broadcast)
+    cap_add:
+      - NET_ADMIN
+    networks:
+      sandbox_net:
+        ipv4_address: 192.168.56.10
+
+networks:
+  sandbox_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.56.0/24
+          gateway: 192.168.56.1
