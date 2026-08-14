@@ -218,16 +218,4 @@ Possible enhancements include:
 
 # License
 
-This project is licensed under the **MIT License**.
-
-See the `LICENSE` file for additional information.
-
----
-
-## Author
-
-**Roberto Delgado**
-
-Senior Cybersecurity Consultant
-
-Cybersecurity | Cloud Security | DevSecOps | Infrastructure Security | Security Automation
+This project is licensed under the MIT License. See the `LICENSE` file for details.
